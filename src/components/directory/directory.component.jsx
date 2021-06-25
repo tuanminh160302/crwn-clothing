@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 
 import '../directory/directory.styles.scss';
@@ -9,7 +8,7 @@ class Directory extends React.Component {
         super(props)
 
         this.state = {
-            section: [
+            sections: [
                 {
                     title: 'hats',
                     imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
@@ -49,8 +48,8 @@ class Directory extends React.Component {
     render() {
         return (
             <div className={this.props.className}>
-                {this.state.section.map((section) => (
-                    <MenuItem key={section.id} title={section.title}></MenuItem>
+                {this.state.sections.map(({title, imageUrl, id, size}) => (
+                    <MenuItem key={id} title={title} imageUrl={imageUrl} size={size}></MenuItem>
                 ))}
             </div>
         )
