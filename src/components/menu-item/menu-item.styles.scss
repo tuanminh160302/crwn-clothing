@@ -1,11 +1,11 @@
 .menu-item {
   min-width: 30%;
-  height: 240px;
+  height: 30vw;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
+  border: 2px solid black;
   margin: 0 7.5px 15px;
   position: relative;
   overflow: hidden;
@@ -25,7 +25,7 @@
   }
 
   &.large {
-    height: 380px;
+    height: 30vw;
   }
 
   &:first-child {
@@ -46,7 +46,8 @@
   }
 
   .content {
-    height: 90px;
+    height: 25%;
+    width: 25%;
     padding: 0 25px;
     display: flex;
     flex-direction: column;
@@ -59,15 +60,16 @@
     transition: .2s;
 
     .title {
+      font-size: 2em !important;
       font-weight: bold;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       font-size: 22px;
       color: #4a4a4a;
     }
 
     .subtitle {
       font-weight: lighter;
-      font-size: 16px;
+      font-size: 1.2em;
     }
   }
 }
