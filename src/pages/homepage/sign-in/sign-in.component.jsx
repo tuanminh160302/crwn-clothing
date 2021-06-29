@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
 import React from 'react';
+import { withRouter } from 'react-router';
 
 import '../sign-in/sign-in.styles.scss'
 
@@ -15,6 +16,12 @@ class SignIn extends React.Component {
             email: '',
             password: ''
         }
+    }
+
+    componentDidUpdate() {
+        return this.props.currentUser ? 
+        this.props.history.push('/')
+        : null
     }
 
     handleSubmit = (e) => {
@@ -58,8 +65,11 @@ class SignIn extends React.Component {
                         required />
 
                     <div className='buttons'>
-                        <CustomButton type="submit" value='Submit Form' isGoogleSignIn={false}>Sign in</CustomButton>
-                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>Sign in with Google</CustomButton>
+                        {/* <CustomButton type="submit" value='Submit Form' isGoogleSignIn={false}>Sign in</CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn={true}>Sign in with Google</CustomButton> */}
+
+                        {CustomButton({type: 'submit', value: 'Submit Form', isGoogleSignIn: false, content:'Sign in'})}
+                        {CustomButton({onClick: signInWithGoogle, isGoogleSignIn: true, content: 'Sign in with Google'})}
                     </div>
                 </form>
             </div>
@@ -68,4 +78,4 @@ class SignIn extends React.Component {
 }
 
 
-export default SignIn;
+export default withRouter(SignIn);
