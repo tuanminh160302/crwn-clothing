@@ -5,7 +5,7 @@ import { ReactComponent as Logo} from '../../assets/crown.svg';
 import '../header/header.styles.scss';
 import {auth} from '../../firebase/firebase.utils';
 
-export const Header = ({currentUser}) => {
+export const Header = ({currentUser, handleSignInClick}) => {
     return(
         <div className='header'>
             <Link className='logo-container' to='/'>
@@ -19,7 +19,7 @@ export const Header = ({currentUser}) => {
                     currentUser ? 
                     <div className='option' onClick={()=>{auth.signOut()}}>SIGN OUT</div>
                     :
-                    <Link className='option' to='/signin'>SIGN IN</Link>
+                    <Link className='option' to='/signin' onClick={()=>{handleSignInClick()}}>SIGN IN</Link>
                 }
             </div>
         </div>

@@ -21,8 +21,25 @@ class App extends React.Component {
   unsubscribeFromAuth = null
 
   componentDidMount() {
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      createUserProfileDocument(user);
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+      if (userAuth) {
+        const userRef = await createUserProfileDocument(userAuth)
+        
+        userRef.onSnapshot((snapShot) => {
+          this.setState((prevState, prevProps) => ({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          }), () => {
+            console.log(this.state)
+          })
+        })
+      } else {
+        this.setState((prevState, prevProps) => ({
+          currentUser: userAuth
+        }))
+      }
     })
   }
 
@@ -30,10 +47,14 @@ class App extends React.Component {
     this.unsubscribeFromAuth()
   }
 
+  handleSignInClick = () => {
+    console.log(this.state)
+  }
+
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser}></Header>
+        {Header({currentUser: this.state.currentUser, handleSignInClick: this.handleSignInClick})}
         <Switch>
           <Route exact path='/' render={(props) => (HomePage())}></Route>
           <Route exact path='/shop' render={(props) => (ShopPage())}></Route>
