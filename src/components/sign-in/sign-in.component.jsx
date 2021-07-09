@@ -1,12 +1,11 @@
 import { render } from '@testing-library/react';
 import React from 'react';
-import { withRouter } from 'react-router';
 
-import '../sign-in/sign-in.styles.scss'
+import './sign-in.styles.scss'
 
-import { FormInput } from '../../../components/form-input/form-input.component';
-import { CustomButton } from '../../../components/custom-button/custom-button.component'
-import { signInWithGoogle } from '../../../firebase/firebase.utils';
+import { FormInput } from '../form-input/form-input.component';
+import { CustomButton } from '../custom-button/custom-button.component'
+import { signInWithGoogle } from '../../firebase/firebase.utils';
 
 class SignIn extends React.Component {
     constructor(props) {
@@ -16,12 +15,6 @@ class SignIn extends React.Component {
             email: '',
             password: ''
         }
-    }
-
-    componentDidUpdate() {
-        return this.props.currentUser ? 
-        this.props.history.push('/')
-        : null
     }
 
     handleSubmit = (e) => {
@@ -78,4 +71,4 @@ class SignIn extends React.Component {
 }
 
 
-export default withRouter(SignIn);
+export default SignIn;

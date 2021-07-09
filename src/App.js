@@ -57,8 +57,8 @@ class App extends React.Component {
         {Header({currentUser: this.state.currentUser, handleSignInClick: this.handleSignInClick})}
         <Switch>
           <Route exact path='/' render={(props) => (HomePage())}></Route>
-          <Route exact path='/shop' render={(props) => (ShopPage())}></Route>
-          <Route exact path='/signin' render={(props) => (SignInAndSignUpPage({currentUser: this.state.currentUser}))}></Route>
+          <Route exact path='/shop' component={ShopPage}></Route>
+          <Route exact path='/signin' render={(props) => (SignInAndSignUpPage())}></Route>
         </Switch>
       </div>
     )
