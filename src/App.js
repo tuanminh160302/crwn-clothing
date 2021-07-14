@@ -45,7 +45,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={() => (<HomePage />)}></Route>
           <Route exact path='/shop' render={() => (<ShopPage />)}></Route>
-          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' />) : <SignInAndSignUpPage />}></Route>
+          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)}></Route>
         </Switch>
       </div>
     )
